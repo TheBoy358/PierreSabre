@@ -8,10 +8,8 @@ public class HistoireTP4 {
 		Humain prof = new Humain("Prof","kombucha",54);
 		prof.direBonjour();
 		prof.acheter("boisson",12);
-		prof.perdreArgent(12);
 		prof.boire();
 		prof.acheter("jeu",2);
-		prof.perdreArgent(2);
 		prof.acheter("kimono",50);
 	}
 }
