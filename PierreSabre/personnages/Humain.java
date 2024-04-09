@@ -1,9 +1,13 @@
 package personnages;
 
 public class Humain {
-	private String nom;
-	private String boissonfavorite;
-	private int argent;
+	protected String nom;
+	protected String boissonfavorite;
+	protected int argent;
+	
+	// TP 5
+	protected int nbConnaissance;
+	protected Humain[] memoire = new Humain[30];
 	
 	public Humain(String nom, String boissonfavorite, int argent) {
 		this.nom = nom;
@@ -56,8 +60,25 @@ public class Humain {
 		argent -= perte;
 	}
 	
+	public void faireConnaissanceAvec(Humain autreHumain){
+		this.direBonjour();
+		autreHumain.repondre(this);
+		this.memoriser(autreHumain);
+	}
+	
+	private void repondre(Humain humain) {
+		this.direBonjour();
+		this.memoriser(humain);
+	}
+	
+	private void memoriser(Humain humain) {
+		memoire[this.nbConnaissance] = humain;
+		nbConnaissance += 1;
+	}
+	
 	public static void main(String[] args) {
 		Humain prof = new Humain("Prof","kombucha",54);
+		prof.direBonjour();
 		prof.acheter("boisson",12);
 		prof.boire();
 		prof.acheter("jeu",2);
