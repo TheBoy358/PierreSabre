@@ -1,16 +1,12 @@
 package personnages;
 
-public class Yakuza {
-	protected String nom;
-	protected String boissonfavorite;
-	protected int argent;
+public class Yakuza extends Humain {
 	protected int ptReput = 4;
 	protected String clan;
 
 	public Yakuza(String nom, String boissonfavorite, int argent, String clan) {
-		this.nom = nom;
-		this.boissonfavorite = boissonfavorite;
-		this.argent = argent;
+		super(nom,boissonfavorite,argent);
+		this.ptReput = ptReput;
 		this.clan = clan;
 	}
 	
@@ -30,16 +26,18 @@ public class Yakuza {
 		return ptReput;
 	}
 	
-	private String prendreParole() {
+	public String prendreParole() {
 		return nom + " - ";
 	}
 	
 	public void parler(String texte) {
-		System.out.println("« " + texte + " »");
+		System.out.println("Â« " + texte + " Â»");
 	}
 	
+	@Override
 	public void direBonjour() {
-		parler(prendreParole() + "Bonjour ! Je m’appelle " + nom + " et j’aime boire du " + boissonfavorite + ".");
+		parler(prendreParole() + "Bonjour ! Je m'appelle " + nom + " et j'aime boire du " + boissonfavorite + ".");
+		parler(prendreParole() + "Mon clan est celui de " + clan + ".");
 	}
 	
 	public void boire() {
@@ -55,16 +53,16 @@ public class Yakuza {
 	}
 	
 	public void extorquer(Commercant victime) {
-		parler(prendreParole() + "Tiens, tiens, ne serait-ce pas un faible marchand qui passe par là ?");
-		parler(prendreParole() + victime.getNom() + " , si tu tiens à la vie donne moi ta bourse !");
+		parler(prendreParole() + "Tiens, tiens, ne serait-ce pas un faible marchand qui passe par lÃ  ?");
+		parler(prendreParole() + victime.getNom() + " , si tu tiens Ã  la vie donne moi ta bourse !");
 		gagnerArgent(victime.getArgent());
+		parler(prendreParole() + " J'ai piquÃ© les " + victime.getArgent() + " sous de " + victime.getNom() + " , ce qui me fait " + argent + " sous dans ma poche. Hi ! Hi !");
 		victime.seFaireExtorquer();
-		parler(prendreParole() + " J’ai piqué les " + victime.getArgent() + " sous de " + victime.getNom() + " , ce qui me fait " + argent + " sous dans ma poche. Hi ! Hi !");
 	}
 	
 	int perdre() {
 		ptReput -= 1;
-		parler(prendreParole() + "J’ai perdu mon duel et mes " + argent + " sous, snif... J'ai déshonoré le clan de " + clan + " .");
+		parler(prendreParole() + "J'ai perdu mon duel et mes " + argent + " sous, snif... J'ai dÃ©shonorÃ© le clan de " + clan + " .");
 		perdreArgent(argent);
 		return argent;
 	}
@@ -75,6 +73,6 @@ public class Yakuza {
 		roro.perdreArgent(gain);
 		gagnerArgent(gain);
 		ptReput += 1;
-		parler(prendreParole() + "Ce ronin pensait vraiment battre " + nom + " du clan de " + clan + " ? Je l'ai dépouillé de ses " + gain + " sous.");
+		parler(prendreParole() + "Ce ronin pensait vraiment battre " + nom + " du clan de " + clan + " ? Je l'ai dÃ©pouillÃ© de ses " + gain + " sous.");
 	}
 }

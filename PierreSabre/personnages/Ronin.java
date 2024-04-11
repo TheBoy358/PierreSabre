@@ -1,16 +1,11 @@
 package personnages;
 
-public class Ronin {
-	protected String nom;
-	protected String boissonfavorite;
-	protected int argent;
+public class Ronin extends Humain {
 	protected int honneur = 1;
 	protected int force = honneur*2;
 
 	public Ronin(String nom, String boissonfavorite, int argent) {
-		this.nom = nom;
-		this.boissonfavorite = boissonfavorite;
-		this.argent = argent;
+		super(nom,boissonfavorite,argent);
 		this.honneur = honneur;
 		this.force = force;
 	}
@@ -27,16 +22,16 @@ public class Ronin {
 		return argent;
 	}
 	
-	private String prendreParole() {
+	public String prendreParole() {
 		return nom + " - ";
 	}
 	
 	public void parler(String texte) {
-		System.out.println("« " + texte + " »");
+		System.out.println("Â« " + texte + " Â»");
 	}
 	
 	public void direBonjour() {
-		parler(prendreParole() + "Bonjour ! Je m’appelle " + nom + " et j’aime boire du " + boissonfavorite + ".");
+		parler(prendreParole() + "Bonjour ! Je m'appelle " + nom + " et j'aime boire du " + boissonfavorite + ".");
 	}
 	
 	public void boire() {
@@ -55,19 +50,22 @@ public class Ronin {
 		int gain = argent/10;
 		parler(prendreParole() + beneficiaire.getNom() + " prend ces " + gain + " sous.");
 		beneficiaire.recevoir(gain);
+		perdreArgent(gain);
 	}
 	
 	public void provoquer(Yakuza adversaire){
-		parler(prendreParole() + "Je t'ai retrouvé vermine, tu vas payer pour ce que tu as fait à ce pauvre marchand!");
+		parler(prendreParole() + "Je t'ai retrouvÃ© vermine, tu vas payer pour ce que tu as fait Ã  ce pauvre marchand!");
 		
 		if (adversaire.getReput() < force) {
 			honneur += 1;
-			parler(prendreParole() + "Je t’ai eu petit yakusa!");
+			parler(prendreParole() + "Je t'ai eu petit yakusa!");
+			gagnerArgent(adversaire.getArgent());
 			adversaire.perdre();
 		} else {
 			honneur -= 1;
 			parler(prendreParole() + "J'ai perdu contre ce yakuza, mon honneur et ma bourse ont en pris un coup.");
 			adversaire.gagner(argent);
+			perdreArgent(argent);
 		}
 	}
 }

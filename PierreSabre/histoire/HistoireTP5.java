@@ -1,17 +1,33 @@
 package histoire;
 
 import personnages.Commercant;
-import personnages.Humain;
 import personnages.Ronin;
 import personnages.Yakuza;
+import personnages.Samourai;
 
 public class HistoireTP5 {
 	
 	public static void main(String[] args) {
-		Commercant marco = new Commercant("Marco","thÈ",20);
-		Commercant chonin = new Commercant("Chonin","thÈ",40);
-		Commercant kumi = new Commercant("Kumi","thÈ",10);
+		Commercant marco = new Commercant("Marco","th√©",20);
+		Commercant chonin = new Commercant("Chonin","th√©",40);
+		Commercant kumi = new Commercant("Kumi","th√©",10);
 		Yakuza yaku = new Yakuza("Yaku Le Noir","whisky",30,"Warsong");
-		Ronin roro = new Ronin("Roro","shochu", 60);
+		Ronin roro = new Ronin("Roro","shochu",60);
+		
+		//marco.faireConnaissanceAvec(roro);
+		//marco.faireConnaissanceAvec(yaku);
+		//marco.faireConnaissanceAvec(chonin);
+		//marco.faireConnaissanceAvec(kumi);
+		
+		//marco.listerConnaissance();
+		//roro.listerConnaissance();
+		//yaku.listerConnaissance();
+		
+		//yaku.direBonjour();
+		
+		Samourai akimoto = new Samourai("Miyamoto", "Akimoto", "sak√©", 80);
+		akimoto.direBonjour();
+		marco.faireConnaissanceAvec(akimoto);
+		akimoto.listerConnaissance();
 	}
 }

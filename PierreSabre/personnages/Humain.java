@@ -13,6 +13,8 @@ public class Humain {
 		this.nom = nom;
 		this.boissonfavorite = boissonfavorite;
 		this.argent = argent;
+		this.nbConnaissance = nbConnaissance;
+		this.memoire = memoire;
 	}
 	
 	public String getNom() {
@@ -27,16 +29,16 @@ public class Humain {
 		return argent;
 	}
 	
-	private String prendreParole() {
+	public String prendreParole() {
 		return nom + " - ";
 	}
 	
 	public void parler(String texte) {
-		System.out.println("« " + texte + " »");
+		System.out.println("Â« " + texte + " Â»");
 	}
 	
 	public void direBonjour() {
-		parler(prendreParole() + "Bonjour ! Je m’appelle " + nom + " et j’aime boire du " + boissonfavorite + ".");
+		parler(prendreParole() + "Bonjour ! Je m'appelle " + nom + " et j'aime boire du " + boissonfavorite + ".");
 	}
 	
 	public void boire() {
@@ -45,10 +47,10 @@ public class Humain {
 	
 	public void acheter(String bien, int prix) {
 		if (argent >= prix) {
-			parler(prendreParole() + "j'ai " + argent + " sous en poche. Je vais pouvoir m'offrir un " + bien + " à " + prix + " sous");
+			parler(prendreParole() + "j'ai " + argent + " sous en poche. Je vais pouvoir m'offrir un " + bien + " Ã  " + prix + " sous");
 			perdreArgent(prix);
 		} else {
-			parler(prendreParole() + "je n'ai plus que " + argent + " sous en poche. Je ne peux même pas m'offrir un " + bien + " à " + prix + " sous");
+			parler(prendreParole() + "je n'ai plus que " + argent + " sous en poche. Je ne peux mÃªme pas m'offrir un " + bien + " Ã  " + prix + " sous");
 		}
 	}
 	
@@ -66,22 +68,21 @@ public class Humain {
 		this.memoriser(autreHumain);
 	}
 	
-	private void repondre(Humain humain) {
+	public void repondre(Humain humain) {
 		this.direBonjour();
 		this.memoriser(humain);
 	}
 	
-	private void memoriser(Humain humain) {
+	public void memoriser(Humain humain) {
 		memoire[this.nbConnaissance] = humain;
 		nbConnaissance += 1;
 	}
 	
-	public static void main(String[] args) {
-		Humain prof = new Humain("Prof","kombucha",54);
-		prof.direBonjour();
-		prof.acheter("boisson",12);
-		prof.boire();
-		prof.acheter("jeu",2);
-		prof.acheter("kimono",50);
+	public void listerConnaissance(){
+		String connaissance = " ";
+		for (int i=0; i<nbConnaissance; i++) {
+			connaissance += memoire[i].getNom() + ", ";
+		   }
+		parler(prendreParole() + "Je connais beaucoup de monde dont :" + connaissance);
 	}
 }

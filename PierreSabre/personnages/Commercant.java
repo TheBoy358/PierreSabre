@@ -18,16 +18,16 @@ public class Commercant extends Humain {
 		return argent;
 	}
 	
-	private String prendreParole() {
+	public String prendreParole() {
 		return nom + " - ";
 	}
 	
 	public void parler(String texte) {
-		System.out.println("« " + texte + " »");
+		System.out.println("Â« " + texte + " Â»");
 	}
 	
 	public void direBonjour() {
-		parler(prendreParole() + "Bonjour ! Je m’appelle " + nom + " et j’aime boire du " + boissonfavorite + ".");
+		parler(prendreParole() + "Bonjour ! Je m'appelle " + nom + " et j'aime boire du " + boissonfavorite + ".");
 	}
 	
 	public void boire() {
@@ -43,13 +43,13 @@ public class Commercant extends Humain {
 	}
 	
 	public int seFaireExtorquer() {
-		parler(prendreParole() + "J’ai tout perdu! Le monde est trop injuste...");
+		parler(prendreParole() + "J'ai tout perdu! Le monde est trop injuste...");
 		perdreArgent(argent);
 		return argent;
 	}
 	
-	public void recevoir(int argentgagné) {
-		 gagnerArgent(argentgagné);
-		 parler(prendreParole() + argentgagné + " sous ! Je te remercie généreux donateur!");
+	public void recevoir(int argentgagne) {
+		 gagnerArgent(argentgagne);
+		 parler(prendreParole() + argentgagne + " sous ! Je te remercie gÃ©nÃ©reux donateur!");
 	 }
 }
